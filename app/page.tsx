@@ -250,7 +250,7 @@ export default function Home() {
               </a>
             </div>
             <p className="text-sm text-slate-400">
-              © 2026 sam. All rights reserved.
+              © {new Date().getFullYear()} sam. All rights reserved.
             </p>
           </div>
         </div>
