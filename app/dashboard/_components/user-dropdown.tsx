@@ -2,7 +2,14 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { LogOut, User, Settings, ChevronDown, Home } from "lucide-react";
+import {
+  LogOut,
+  User,
+  Settings,
+  ChevronDown,
+  Home,
+  LayoutDashboard,
+} from "lucide-react";
 import { signOut } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -78,6 +85,13 @@ export default function UserDropdown({ user }: UserDropdownProps) {
               <p className="text-xs text-slate-500 truncate">{user.email}</p>
             </div>
 
+            <Link
+              href="/dashboard"
+              className="w-full flex items-center gap-3 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 transition-all"
+            >
+              <LayoutDashboard className="w-4 h-4" />
+              Dashboard
+            </Link>
             <Link
               href="/"
               className="w-full flex items-center gap-3 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 transition-all"

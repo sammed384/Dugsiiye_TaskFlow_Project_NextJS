@@ -12,8 +12,12 @@ import {
   BarChart3,
   Sparkles,
 } from "lucide-react";
+import { useSession } from "@/lib/auth-client";
+import UserDropdown from "./dashboard/_components/user-dropdown";
 
 export default function Home() {
+  const { data: session } = useSession();
+
   return (
     <div className="min-h-screen bg-slate-50 overflow-x-hidden">
       {/* Navbar */}
@@ -32,30 +36,36 @@ export default function Home() {
               </span>
             </div>
             <div className="hidden md:flex items-center gap-8">
-              <a
-                href="#features"
-                className="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors"
-              >
-                Features
-              </a>
-              <a
-                href="#pricing"
-                className="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors"
-              >
-                Pricing
-              </a>
               <Link
-                href="/login"
+                href="/"
                 className="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors"
               >
-                Sign In
+                Home
               </Link>
               <Link
-                href="/register"
-                className="px-4 py-2 bg-slate-900 text-white text-sm font-medium rounded-full hover:bg-slate-800 transition-all shadow-lg shadow-slate-200 hover:shadow-xl"
+                href="/dashboard"
+                className="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors"
               >
-                Get Started
+                Dashboard
               </Link>
+              {session ? (
+                <UserDropdown user={session.user} />
+              ) : (
+                <>
+                  <Link
+                    href="/login"
+                    className="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors"
+                  >
+                    Sign In
+                  </Link>
+                  <Link
+                    href="/register"
+                    className="px-4 py-2 bg-slate-900 text-white text-sm font-medium rounded-full hover:bg-slate-800 transition-all shadow-lg shadow-slate-200 hover:shadow-xl"
+                  >
+                    Get Started
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -212,58 +222,8 @@ export default function Home() {
       </section>
 
       {/* Social Proof */}
-      <section className="py-20 border-y border-slate-100 bg-slate-50/50">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <p className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-8">
-            Trusted by innovative teams worldwide
-          </p>
-          <div className="flex flex-wrap justify-center gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-            {/* Placeholder Logos */}
-            <div className="flex items-center gap-2 text-xl font-bold text-slate-800">
-              <div className="w-6 h-6 bg-slate-800 rounded-full"></div> Acme
-              Corp
-            </div>
-            <div className="flex items-center gap-2 text-xl font-bold text-slate-800">
-              <div className="w-6 h-6 bg-slate-800 rounded-full"></div>{" "}
-              GlobalTech
-            </div>
-            <div className="flex items-center gap-2 text-xl font-bold text-slate-800">
-              <div className="w-6 h-6 bg-slate-800 rounded-full"></div> Nebula
-            </div>
-            <div className="flex items-center gap-2 text-xl font-bold text-slate-800">
-              <div className="w-6 h-6 bg-slate-800 rounded-full"></div>{" "}
-              FlowState
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* CTA Section */}
-      <section className="py-24 px-4">
-        <div className="max-w-5xl mx-auto bg-slate-900 rounded-[2.5rem] p-12 md:p-20 text-center relative overflow-hidden">
-          {/* Background Gradients */}
-          <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
-            <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-indigo-600/30 blur-[100px] rounded-full"></div>
-            <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-violet-600/30 blur-[100px] rounded-full"></div>
-          </div>
-
-          <div className="relative z-10">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
-              Ready to boost your productivity?
-            </h2>
-            <p className="text-slate-300 text-lg mb-10 max-w-2xl mx-auto">
-              Join thousands of teams who have transformed their workflow with
-              TaskFlow. Start your free trial today.
-            </p>
-            <Link
-              href="/register"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-slate-900 font-bold rounded-full hover:bg-slate-50 transition-all shadow-xl hover:scale-105"
-            >
-              Get Started Now <ArrowRight className="w-5 h-5" />
-            </Link>
-          </div>
-        </div>
-      </section>
 
       {/* Footer */}
       <footer className="bg-white border-t border-slate-100 py-12">

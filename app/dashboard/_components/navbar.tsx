@@ -1,7 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { LayoutDashboard, CheckSquare, Settings, Bell } from "lucide-react";
+import {
+  LayoutDashboard,
+  CheckSquare,
+  Settings,
+  Bell,
+  Home,
+} from "lucide-react";
 import UserDropdown from "./user-dropdown";
 
 interface NavbarProps {
@@ -34,28 +40,29 @@ export default function Navbar({ user }: NavbarProps) {
             {/* Nav Links */}
             <div className="hidden md:flex items-center gap-1">
               <Link
+                href="/"
+                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-all"
+              >
+                <Home className="w-4 h-4" />
+                Home
+              </Link>
+
+              <Link
                 href="/dashboard"
                 className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-indigo-600 bg-indigo-50 rounded-xl transition-all"
               >
                 <LayoutDashboard className="w-4 h-4" />
                 Dashboard
               </Link>
-              <Link
-                href="/dashboard/settings"
-                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-all"
-              >
-                <Settings className="w-4 h-4" />
-                Settings
-              </Link>
             </div>
           </div>
 
           <div className="flex items-center gap-4">
             {/* Notifications */}
-            <button className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-50 rounded-xl transition-all relative">
+            {/* <button className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-50 rounded-xl transition-all relative">
               <Bell className="w-5 h-5" />
               <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
-            </button>
+            </button> */}
 
             <div className="h-8 w-px bg-slate-200 mx-1 hidden sm:block" />
 
